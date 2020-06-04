@@ -1,2 +1,2 @@
-# Performance-Tracking
-Track system's performance
+# Electron_quick_start
+ Tracks system performance

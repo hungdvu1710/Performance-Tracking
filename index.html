@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Perfomance Tracking</title>
+    <!-- https://electronjs.org/docs/tutorial/security#csp-meta-tag -->
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <h1>Performance Tracking</h1>
+    <div id="memUsed"></div>
+    <progress id="memory" value="" max="100"></progress>
+    <div id="percentCpuUsed"></div>
+    <progress id="cpu" value="" max="100"></progress>
+    <script src="index.js"></script>
+    <div id="uptime"></div>
+  </body>
+</html>

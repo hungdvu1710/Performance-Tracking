@@ -1,0 +1,14 @@
+progress{
+  display: block; /* default: inline-block */
+  width: 300px;
+  margin: 5px;
+  padding: 5px;
+  height: 30px;
+  border: blue;
+  background: #444;
+  border-radius: 6px;
+  box-shadow: inset 0px 1px 1px rgba(0,0,0,0.5), 0px 1px 0px rgba(255,255,255,0.2);
+}
+body{
+  background-color: #ff7675;
+}
