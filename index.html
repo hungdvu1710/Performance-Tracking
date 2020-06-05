@@ -8,17 +8,29 @@
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
-    <h1>Performance Tracking</h1>
-    <!-- #region track memory used-->
-    <div id="memUsed"></div>
-    <progress id="memory" value="" max="100"></progress>
-    <!-- #endregion -->
+    <h2>Performance Tracking</h2>
 
-    <!-- #region track cpu utilization-->
-    <div id="percentCpuUsed"></div>
-    <progress id="cpu" value="" max="100"></progress>
-    <!-- #endregion -->
-    <div id="uptime"></div>
+    <div class="memoryTracker">
+      <div id="memUsed"></div>
+      <progress id="memory" value="" max="100"></progress>
+    </div>
+    <br>
+
+    <div class="cpuInfo">
+      <div id="model"></div>
+      <div id="speed"></div>
+    </div>
+
+    <div class="cpuTracker">
+      <div id="percentCpuUsed"></div>
+      <progress id="cpu" value="" max="100"></progress>
+    </div>
+    <br>
+
+    <div>
+      <span>System Uptime: </span>
+      <span id="uptime">N/A</span>
+    </div>
 
     <script src="index.js"></script>
   </body>

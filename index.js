@@ -18,6 +18,14 @@ function updateMemoryUsageWithPromise(){
   })
 }
 
+function getCpuInfo(){
+  const {model, speed} = os.cpus()[0]
+  document.querySelector("#model").innerText = `CPU model: ${model}`
+  document.querySelector("#speed").innerText = `Speed: ${speed}`
+}
+
+getCpuInfo()
+
 function updateCpuUsageWithPromise(){
   return new Promise(function(e) {
     exec('wmic cpu get loadpercentage', (error, stdout) => {
@@ -38,9 +46,9 @@ setInterval(() =>{
   Promise.all([
     updateCpuUsageWithPromise(),
     updateMemoryUsageWithPromise()
-  ]).then().catch(console.log)
+  ]).catch(console.log)
 
-  document.querySelector("#uptime").innerText = `Uptime ${os.uptime()}`
+  document.querySelector("#uptime").innerText = os.uptime()
 
 },1000)
 
