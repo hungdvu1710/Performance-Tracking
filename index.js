@@ -3,7 +3,7 @@ const { exec } = require('child_process');
 
 function updateMemoryUsage(){
   const memoryUsed = os.totalmem() - os.freemem()
-  const displayInGB = Math.floor(memoryUsed/10000000) / 100
+  const displayInGB = Math.floor(memoryUsed/1073741824 * 100) / 100
   document.querySelector("#memUsed").innerText = `Memory Used: ${displayInGB}GB`
 
   const percentMemoryUsed = ((memoryUsed)/os.totalmem())*100
@@ -26,6 +26,28 @@ function getCpuInfo(){
 
 getCpuInfo()
 
+function updateDiskUsageWithPromise(){
+  return new Promise((e) =>{
+    exec('wmic logicaldisk get size,freespace,caption', (error, stdout) => {
+      if (error) {
+        console.error(`exec error: ${error}`)
+        return
+      }
+      const res = stdout.replace(/\s+/g, " ").split(" ")
+
+      const freeSpace = res[4]
+      const totalCapacity = res[5]
+      const usedSpace = totalCapacity - freeSpace
+      const usedSpaceForDisplay = Math.floor(usedSpace/1073741824 * 100) / 100
+    
+      document.querySelector("#usedSpace").innerText = `Used Space: ${usedSpaceForDisplay}GB`
+      document.querySelector("#disk").setAttribute("value",(usedSpace/totalCapacity) * 100)
+    });
+
+    if(e) throw e
+  })
+}
+
 function updateCpuUsageWithPromise(){
   return new Promise(function(e) {
     exec('wmic cpu get loadpercentage', (error, stdout) => {
@@ -45,10 +67,10 @@ function updateCpuUsageWithPromise(){
 setInterval(() =>{
   Promise.all([
     updateCpuUsageWithPromise(),
-    updateMemoryUsageWithPromise()
+    updateMemoryUsageWithPromise(),
+    updateDiskUsageWithPromise()
   ]).catch(console.log)
 
   document.querySelector("#uptime").innerText = os.uptime()
 
 },1000)
-
