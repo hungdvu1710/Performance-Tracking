@@ -38,6 +38,8 @@ function updateDiskUsage(){
             document.querySelector(".logicalDiskTracker").innerHTML +=`
             <div class="disk${res[i]}">
               <div>Disk: ${res[i]}</div>
+              <div>Storage unaccessible</div>
+              <br>
             </div>
             `
           } else{
